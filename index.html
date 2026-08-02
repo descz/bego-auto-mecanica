@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bêgo Auto Mecânica — Jundiaí</title>
+<meta name="description" content="Oficina mecânica em Jundiaí com nota 4,9 no Google. 30 anos de honestidade, peças de qualidade e preço justo. R. Dr. Antenor Soares Gandra, 1095 - Colônia." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --base: #0a0a0d; --surface: #131317; --surface-hi: #1a1a20;
+    --primary: #3d9bd6; --primary-dim: #2a76a8;
+    --accent: #f0f2f5; --muted: #8a8f99;
+    --radius: 10px; --radius-sm: 8px; --maxw: 1140px;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { background:var(--base); color:var(--accent); font-family:'Inter',sans-serif; line-height:1.6; -webkit-font-smoothing:antialiased; }
+  img { max-width:100%; display:block; }
+  a { color:inherit; text-decoration:none; }
+  .wrap { max-width:var(--maxw); margin:0 auto; padding:0 24px; }
+  .mono { font-family:'JetBrains Mono',monospace; letter-spacing:.06em; text-transform:uppercase; font-size:12px; color:var(--muted); }
+  header { position:fixed; top:0; left:0; right:0; z-index:50; background:rgba(10,10,13,.85); backdrop-filter:blur(12px); border-bottom:1px solid rgba(240,242,245,.06); }
+  .nav { display:flex; align-items:center; justify-content:space-between; height:64px; }
+  .logo { font-family:'Archivo',sans-serif; font-weight:700; font-size:22px; letter-spacing:-.02em; }
+  .logo span { color:var(--primary); }
+  .nav-links { display:flex; gap:28px; font-size:14px; color:var(--muted); }
+  .nav-links a:hover { color:var(--accent); }
+  .btn { display:inline-flex; align-items:center; gap:8px; background:var(--primary); color:#02121c; font-weight:600; font-size:14px; padding:12px 22px; border-radius:var(--radius-sm); transition:filter .2s, transform .2s; }
+  .btn:hover { filter:brightness(1.12); transform:translateY(-1px); }
+  .btn.ghost { background:var(--surface-hi); color:var(--accent); }
+  .hamburger { display:none; background:none; border:none; color:var(--accent); font-size:24px; cursor:pointer; }
+
+  .hero { padding:150px 0 80px; position:relative; overflow:hidden; }
+  .hero-bg { position:absolute; inset:0; z-index:-1; }
+  .hero-bg img { width:100%; height:100%; object-fit:cover; opacity:.26; }
+  .hero-bg::after { content:''; position:absolute; inset:0; background:linear-gradient(180deg, rgba(10,10,13,.6) 0%, var(--base) 94%); }
+  .hero .mono { color:var(--primary); }
+  h1 { font-family:'Archivo',sans-serif; font-weight:700; font-size:clamp(38px,6.5vw,70px); line-height:1.05; letter-spacing:-.03em; margin:18px 0 20px; max-width:760px; }
+  h1 em { font-style:normal; color:var(--primary); }
+  .hero p { font-size:18px; color:var(--muted); max-width:560px; margin-bottom:32px; }
+  .hero-cta { display:flex; gap:14px; flex-wrap:wrap; }
+  .hero-meta { display:flex; gap:32px; margin-top:48px; flex-wrap:wrap; }
+  .hero-meta .stat { font-family:'Archivo',sans-serif; font-weight:700; font-size:28px; line-height:1; }
+  .hero-meta .stat span { display:block; font-family:'JetBrains Mono',monospace; font-weight:500; font-size:11px; color:var(--muted); letter-spacing:.06em; text-transform:uppercase; margin-top:6px; }
+
+  section { padding:80px 0; }
+  .sec-head { margin-bottom:44px; }
+  .sec-head h2 { font-family:'Archivo',sans-serif; font-size:clamp(28px,4vw,44px); letter-spacing:-.02em; margin-top:10px; }
+  .sec-head p { color:var(--muted); margin-top:8px; max-width:560px; }
+
+  .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center; }
+  .about-grid img { border-radius:var(--radius); box-shadow:0 8px 24px rgba(0,0,0,.5); }
+  .about-grid h3 { font-family:'Archivo',sans-serif; font-size:24px; margin-bottom:14px; }
+  .about-grid p { color:var(--muted); margin-bottom:14px; }
+  .hours { display:grid; grid-template-columns:1fr 1fr; gap:8px 32px; margin-top:24px; background:var(--surface); padding:20px; border-radius:var(--radius); }
+  .hours .row { display:flex; justify-content:space-between; font-size:14px; gap:12px; }
+  .hours .row span:last-child { color:var(--accent); font-weight:500; }
+
+  .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:20px; }
+  .card { background:var(--surface); border-radius:var(--radius); padding:28px; box-shadow:0 8px 24px rgba(0,0,0,.5); transition:transform .2s, background .2s; }
+  .card:hover { transform:translateY(-4px); background:var(--surface-hi); }
+  .card .num { font-family:'JetBrains Mono',monospace; color:var(--primary); font-size:13px; }
+  .card h3 { font-family:'Archivo',sans-serif; font-size:19px; margin:10px 0 8px; }
+  .card p { color:var(--muted); font-size:14px; }
+
+  .gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px; }
+  .gallery img { width:100%; height:240px; object-fit:cover; border-radius:var(--radius); transition:transform .3s, box-shadow .3s; box-shadow:0 4px 16px rgba(0,0,0,.4); }
+  .gallery img:hover { transform:scale(1.03); box-shadow:0 8px 28px rgba(61,155,214,.18); }
+
+  .loc { display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center; }
+  .loc .addr { background:var(--surface); padding:24px; border-radius:var(--radius); margin-bottom:16px; }
+  .loc .addr .mono { color:var(--primary); }
+  .loc .addr h3 { font-family:'Archivo',sans-serif; margin:8px 0; font-size:20px; }
+  .loc .addr p { color:var(--muted); font-size:14px; }
+  .map { border-radius:var(--radius); overflow:hidden; box-shadow:0 8px 24px rgba(0,0,0,.5); min-height:320px; background:var(--surface-hi); }
+
+  footer { border-top:1px solid rgba(240,242,245,.06); padding:40px 0 56px; }
+  footer p { color:var(--muted); font-size:13px; }
+
+  @media(max-width:820px){
+    .nav-links { display:none; }
+    .hamburger { display:block; }
+    .about-grid, .loc, .hours { grid-template-columns:1fr; }
+    .hero { padding-top:120px; }
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script crossorigin src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/htm@3.1.1/dist/htm.js"></script>
+<script>
+const h = window.htm.bind(window.React.createElement);
+const { useState } = window.React;
+const WHATSAPP = "551144911097";
+const WA_LINK = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent("Oi! Vim pelo site da Bêgo Auto Mecânica. Preciso de um orçamento.")}`;
+const SERVICOS = [
+  { n:"01", t:"Mecânica geral", d:"Motor, câmbio e revisões completas com peças de qualidade." },
+  { n:"02", t:"Diagnóstico", d:"Equipamento de leitura para achar o problema exato." },
+  { n:"03", t:"Elétrica", d:"Sistema elétrico, injeção e painel com precisão." },
+  { n:"04", t:"Suspensão e freios", d:"Segurança em primeiro lugar, com garantia de serviço." },
+];
+const GALLERY = ["img/hero-mecanico.jpg","img/diagnostico.jpg","img/fachada.jpg","img/galeria-1.jpg"];
+function App() {
+  const [open, setOpen] = useState(false);
+  return h`<div>
+    <header>
+      <div className="wrap nav">
+        <div className="logo">BÊGO<span>AUTO</span></div>
+        <nav className="nav-links">
+          <a href="#sobre">Sobre</a><a href="#servicos">Serviços</a>
+          <a href="#galeria">Galeria</a><a href="#local">Local</a>
+        </nav>
+        <a className="btn" href=${WA_LINK} target="_blank" rel="noopener">Orçamento no WhatsApp</a>
+        <button className="hamburger" onClick=${() => setOpen(!open)}>${open ? "✕" : "☰"}</button>
+      </div>
+    </header>
+    <section className="hero">
+      <div className="hero-bg"><img src="img/hero-mecanico.jpg" alt="Mecânico da Bêgo trabalhando" /></div>
+      <div className="wrap">
+        <div className="mono">● Colônia · Jundiaí · Nota 4,9</div>
+        <h1>30 anos de <em>confiança</em></h1>
+        <p>A oficina que os clientes chamam de "a melhor de Jundiaí": honestidade, peças de qualidade e preço justo.</p>
+        <div className="hero-cta">
+          <a className="btn" href=${WA_LINK} target="_blank" rel="noopener">Chamar no WhatsApp</a>
+          <a className="btn ghost" href="#servicos">Ver serviços</a>
+        </div>
+        <div className="hero-meta">
+          <div><div className="stat">4,9<span>Avaliação</span></div></div>
+          <div><div className="stat">354<span>Avaliações Google</span></div></div>
+          <div><div className="stat">30+<span>Anos de história</span></div></div>
+        </div>
+      </div>
+    </section>
+    <section id="sobre">
+      <div className="wrap">
+        <div className="sec-head"><div className="mono">// A Bêgo</div><h2>Honestidade que gera fidelidade</h2><p>Clientes que voltam há mais de 30 anos. Esse é o nosso cartão de visita.</p></div>
+        <div className="about-grid">
+          <img src="img/diagnostico.jpg" alt="Diagnóstico na Bêgo Auto Mecânica" />
+          <div>
+            <h3>Conhecimento de verdade, preço justo</h3>
+            <p>Equipe que conhece cada detalhe do seu carro, peças de qualidade e orçamento transparente. Resolvemos até o que "não tem mais peça no mercado".</p>
+            <p>Atendimento cordial da recepção aos mecânicos — com café e água sempre à disposição.</p>
+            <div className="hours">
+              <div className="row"><span className="mono">Seg – Sex</span><span>07:30 – 18:00</span></div>
+              <div className="row"><span className="mono">Sáb</span><span>Fechado</span></div>
+              <div className="row"><span className="mono">Dom</span><span>Fechado</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="servicos">
+      <div className="wrap">
+        <div className="sec-head"><div className="mono">// Serviços</div><h2>O que a gente resolve</h2></div>
+        <div className="cards">
+          ${SERVICOS.map(m => h`<div className="card" key=${m.n}>
+            <div className="num">${m.n}</div><h3>${m.t}</h3><p>${m.d}</p>
+          </div>`)}
+        </div>
+      </div>
+    </section>
+    <section id="galeria">
+      <div className="wrap">
+        <div className="sec-head"><div className="mono">// Galeria</div><h2>A oficina na real</h2></div>
+        <div className="gallery">
+          ${GALLERY.map((g,i) => h`<img key=${i} src=${g} alt="Fotos reais da Bêgo Auto Mecânica" loading="lazy" />`)}
+        </div>
+      </div>
+    </section>
+    <section id="local">
+      <div className="wrap">
+        <div className="sec-head"><div className="mono">// Onde estamos</div><h2>Chega mais</h2></div>
+        <div className="loc">
+          <div>
+            <div className="addr">
+              <div className="mono">Endereço</div>
+              <h3>Bêgo Auto Mecânica</h3>
+              <p>R. Dr. Antenor Soares Gandra, 1095 — Colônia<br/>Jundiaí · SP · 13218-111</p>
+            </div>
+            <div className="addr">
+              <div className="mono">Contato</div>
+              <h3>(11) 4491-1097</h3>
+              <p>Orçamento e dúvidas pelo WhatsApp.</p>
+            </div>
+            <a className="btn" href=${WA_LINK} target="_blank" rel="noopener">Pedir orçamento</a>
+          </div>
+          <div className="map">
+            <iframe title="Mapa Bêgo Auto Mecânica" width="100%" height="100%" style=${{border:0,minHeight:"320px"}} loading="lazy" referrerPolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps?q=R.%20Dr.%20Antenor%20Soares%20Gandra%2C%201095%20-%20Colonia%2C%20Jundiai%20-%20SP&output=embed"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <div className="wrap">
+        <div className="logo">BÊGO<span>AUTO</span></div>
+        <p style=${{marginTop:"12px"}}>Mecânica automotiva · Colônia, Jundiaí · (11) 4491-1097</p>
+        <p>© 2026 Bêgo Auto Mecânica. Todos os direitos reservados.</p>
+      </div>
+    </footer>
+  </div>`;
+}
+window.ReactDOM.createRoot(document.getElementById('root')).render(h`<${App}/>`);
+</script>
+</body>
+</html>
